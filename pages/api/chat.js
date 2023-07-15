@@ -10,12 +10,24 @@ export default async function handler(req, res) {
   const { messages } = req.body;
 
   try {
-    const result = await openai.createChatCompletion({
+    const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: messages,
-      stream:true
+      stream: true,  // Enable streaming
     });
-    res.status(200).json(result.data);
+
+    // Handle the response as a stream
+    response.data.on('data', (chunk) => {
+      // Each chunk is a part of the response
+      const part = JSON.parse(chunk.toString());
+      res.write(part);
+    });
+
+    response.data.on('end', () => {
+      // Close the connection when the response is complete
+      res.end();
+    });
+
   } catch (error) {
     console.error('Error calling OpenAI API', error);
     res.status(500).json({ error: error.toString() });
