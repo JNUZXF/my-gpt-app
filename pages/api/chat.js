@@ -10,13 +10,12 @@ export default async function handler(req, res) {
   const { messages } = req.body;
 
   try {
-    const result = await openai.createChatCompletion({   
+    const result = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: messages,
     });
     res.status(200).json(result.data);
   } catch (error) {
-    console.error('Error calling OpenAI API', error);
     res.status(500).json({ error: error.toString() });
   }
 }
