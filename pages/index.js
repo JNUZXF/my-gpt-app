@@ -19,7 +19,11 @@ const IndexPage = () => {
     ]);
 
     const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${key}`,
+          },
+        model: "gpt-3.5-turbo",
       messages: [
         ...messages,
         { role: 'user', content: message },
