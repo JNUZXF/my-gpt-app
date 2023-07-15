@@ -1,0 +1,16 @@
+.chat-box {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    height: 400px;
+    width: 600px;
+    overflow-y: auto;
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .chat-box p {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
