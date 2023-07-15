@@ -1,3 +1,4 @@
+// components/ChatBox.js
 import React, { useState } from "react";
 
 const ChatBox = ({ messages = [], onSendMessage }) => {
